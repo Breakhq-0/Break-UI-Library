@@ -849,7 +849,7 @@ end)
 			
 			function Section:ToggleKey(info)
 				UI:Validate({
-					Name = "",
+					Name = "KeyBind",
 					Key = "...",
 					callback = function() end,
 				}, info or {})
@@ -886,7 +886,7 @@ end)
 					ToggleKey.Label.BorderSizePixel = 0
 					ToggleKey.Label.Size = UDim2.new(1, 0, 1, 0)
 					ToggleKey.Label.Font = Enum.Font.SourceSans
-					ToggleKey.Label.Text = "ToggleKeyBind"
+					ToggleKey.Label.Text = info.Name
 					ToggleKey.Label.TextColor3 = Color3.fromRGB(255, 255, 255)
 					ToggleKey.Label.TextSize = 20.000
 					ToggleKey.Label.TextXAlignment = Enum.TextXAlignment.Left
