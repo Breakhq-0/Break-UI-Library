@@ -1,7 +1,7 @@
 local UI = {}
 
 
-local CoreGui = game:GetService('CoreGui')
+--local CoreGui = game:GetService('CoreGui')
 local UserInputService = game:GetService('UserInputService')
 local Players = game:GetService('Players')
 local RunService = game:GetService('RunService')
@@ -45,7 +45,7 @@ function UI:Create(Info)
 	do
 	GUI.screenUI = Instance.new("ScreenGui")
 	GUI.screenUI.Name = "Break UI LIBRARY"
-	GUI.screenUI.Parent = CoreGui
+	GUI.screenUI.Parent = Players.LocalPlayer.PlayerGui --CHANGE BACK TO COREGUI WHEN NOT USING IN STUDIO
 	GUI.screenUI.ResetOnSpawn = false
     GUI.screenUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
 		
@@ -359,14 +359,14 @@ end)
 					
 					Button.ImageLabel = Instance.new("ImageLabel")
 					Button.ImageLabel.Parent = Button.ButtonFrame
-					Button.ImageLabel.AnchorPoint = Vector2.new(1, 0)
+					Button.ImageLabel.AnchorPoint = Vector2.new(1, 0.5)
 					Button.ImageLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 					Button.ImageLabel.BackgroundTransparency = 1.000
 					Button.ImageLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					Button.ImageLabel.BorderSizePixel = 0
-					Button.ImageLabel.Position = UDim2.new(1, 0, 0, 0)
+					Button.ImageLabel.Position = UDim2.new(1, 0, 0.5, 0)
 					Button.ImageLabel.Size = UDim2.new(0, 30, 1, -5)
-					Button.ImageLabel.Image = "rbxassetid://102276835764450"
+					Button.ImageLabel.Image = "rbxassetid://95599245136769"
 					
 					Button.UIStroke = Instance.new("UIStroke")
 					Button.UIStroke.Parent = Button.ButtonFrame
