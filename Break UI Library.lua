@@ -1,6 +1,7 @@
 local UI = {}
 
-local CoreGui = game:GetService('CoreGui')
+
+--local CoreGui = game:GetService('CoreGui')
 local UserInputService = game:GetService('UserInputService')
 local Players = game:GetService('Players')
 local RunService = game:GetService('RunService')
@@ -44,9 +45,9 @@ function UI:Create(Info)
 	do
 	GUI.screenUI = Instance.new("ScreenGui")
 	GUI.screenUI.Name = "Break UI LIBRARY"
-	GUI.screenUI.Parent = CoreGui
+	GUI.screenUI.Parent = Players.LocalPlayer.PlayerGui --CHANGE BACK TO COREGUI WHEN NOT USING IN STUDIO
 	GUI.screenUI.ResetOnSpawn = false
-        GUI.screenUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
+    GUI.screenUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
 		
 	GUI.MainFrame = Instance.new("Frame")
 	GUI.MainFrame.Name = "MainFrame"
@@ -845,6 +846,105 @@ end)
 				
 				return Listbox
 			end
+			
+			function Section:ToggleKey(info)
+				UI:Validate({
+					Name = "",
+					Key = "...",
+					callback = function() end,
+				}, info or {})
+				
+				local ToggleKey = {
+					Connection = nil,
+					key = info.Key,
+				}
+				
+				--render
+				do
+					ToggleKey.Frame = Instance.new("Frame")
+					ToggleKey.Frame.Name = "ToggleKeyBindFrame"
+					ToggleKey.Frame.Parent = Section.Section
+					ToggleKey.Frame.AnchorPoint = Vector2.new(0.5, 0)
+					ToggleKey.Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					ToggleKey.Frame.BackgroundTransparency = 1.000
+					ToggleKey.Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+					ToggleKey.Frame.BorderSizePixel = 0
+					ToggleKey.Frame.Position = UDim2.new(0.5, 0, 0, 5)
+					ToggleKey.Frame.Size = UDim2.new(1, 0, 0, 30)
+					ToggleKey.UIStroke = Instance.new("UIStroke")
+					ToggleKey.UIStroke.Parent = ToggleKey.Frame
+					ToggleKey.UIStroke.Color = Color3.fromRGB(86, 95, 104)
+					ToggleKey.UIStroke.Thickness = 1
+					
+					
+					ToggleKey.Label = Instance.new("TextLabel")
+					ToggleKey.Label.Name = "ToggleKeyBindLabel"
+					ToggleKey.Label.Parent = ToggleKey.Frame
+					ToggleKey.Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					ToggleKey.Label.BackgroundTransparency = 1.000
+					ToggleKey.Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+					ToggleKey.Label.BorderSizePixel = 0
+					ToggleKey.Label.Size = UDim2.new(1, 0, 1, 0)
+					ToggleKey.Label.Font = Enum.Font.SourceSans
+					ToggleKey.Label.Text = "ToggleKeyBind"
+					ToggleKey.Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+					ToggleKey.Label.TextSize = 20.000
+					ToggleKey.Label.TextXAlignment = Enum.TextXAlignment.Left
+					
+					ToggleKey.Box = Instance.new("TextButton")
+					ToggleKey.Box.Name = "KeyBindBox"
+					ToggleKey.Box.Parent = ToggleKey.Frame
+					ToggleKey.Box.AnchorPoint = Vector2.new(1, 0)
+					ToggleKey.Box.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					ToggleKey.Box.BackgroundTransparency = 1.000
+					ToggleKey.Box.BorderColor3 = Color3.fromRGB(0, 0, 0)
+					ToggleKey.Box.BorderSizePixel = 0
+					ToggleKey.Box.Position = UDim2.new(1, 0, 0, 0)
+					ToggleKey.Box.Size = UDim2.new(1, -150, 1, 0)
+					ToggleKey.Box.Font = Enum.Font.SourceSans
+					ToggleKey.Box.Text = tostring(info.Key)
+					ToggleKey.Box.TextColor3 = Color3.fromRGB(255, 255, 255)
+					ToggleKey.Box.TextSize = 20.000
+			
+					
+				end
+				--method
+				
+				function ToggleKey:UpdateKey()
+					local newKey = ToggleKey.Box.Text:upper()
+					info.Key = Enum.KeyCode[newKey]
+					info.callback(info.Key)
+				end
+
+				-- Key listening logic
+				do
+					-- When TextBox is clicked, set it to "..." and listen for new key input
+					ToggleKey.Box.MouseButton1Click:Connect(function()
+						ToggleKey.Box.Text = "..."
+						ToggleKey.Connection = UserInputService.InputBegan:Connect(function(input, g)
+							if g then return end
+							if input.UserInputType == Enum.UserInputType.Keyboard then
+								if input.KeyCode.Name ~= "Unknown" then
+									info.Key = input.KeyCode.Name
+									ToggleKey.Box.Text = input.KeyCode.Name
+								end
+							end
+						end)
+					end)
+					
+					UserInputService.InputBegan:Connect(function(input, gp)
+						if gp then
+							return
+						end
+						if input.KeyCode.Name == info.Key then
+							info.callback()
+						end
+					end)
+				end
+
+				return ToggleKey
+			end
+			
 			
 			return Section
 		end
