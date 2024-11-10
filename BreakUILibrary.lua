@@ -776,15 +776,5 @@ end)
 end
 
 
-
-local window = UI:Create({
-	
-})
-
-local tab = window:CreateTab()
-local section = tab:CreateSection()
-
-	
 return UI
-
 
