@@ -927,6 +927,7 @@ end)
 								if input.KeyCode.Name ~= "Unknown" then
 									info.Key = input.KeyCode.Name
 									ToggleKey.Box.Text = input.KeyCode.Name
+									ToggleKey.Connection:Disconnect()
 								end
 							end
 						end)
