@@ -746,6 +746,10 @@ end)
 						return TextBox.TextBox.Text
 					end
 				end
+
+				function TextBox:SetCallback(fn)
+					   info.callback = fn
+				end
 				
 				function TextBox:EnterPressed(text)
 					if text == nil then
