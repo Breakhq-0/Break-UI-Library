@@ -1,7 +1,6 @@
 local UI = {}
 
-
---local CoreGui = game:GetService('CoreGui')
+local CoreGui = game:GetService('CoreGui')
 local UserInputService = game:GetService('UserInputService')
 local Players = game:GetService('Players')
 local RunService = game:GetService('RunService')
@@ -45,9 +44,9 @@ function UI:Create(Info)
 	do
 	GUI.screenUI = Instance.new("ScreenGui")
 	GUI.screenUI.Name = "Break UI LIBRARY"
-	GUI.screenUI.Parent = Players.LocalPlayer.PlayerGui --CHANGE BACK TO COREGUI WHEN NOT USING IN STUDIO
+	GUI.screenUI.Parent = CoreGui
 	GUI.screenUI.ResetOnSpawn = false
-    GUI.screenUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
+        GUI.screenUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
 		
 	GUI.MainFrame = Instance.new("Frame")
 	GUI.MainFrame.Name = "MainFrame"
