@@ -1,7 +1,7 @@
 local UI = {}
 
 
-local CoreGui = game:GetService('CoreGui')
+--local CoreGui = game:GetService('CoreGui')
 local UserInputService = game:GetService('UserInputService')
 local Players = game:GetService('Players')
 local RunService = game:GetService('RunService')
@@ -45,7 +45,7 @@ function UI:Create(Info)
 	do
 	GUI.screenUI = Instance.new("ScreenGui")
 	GUI.screenUI.Name = "Break UI LIBRARY"
-	GUI.screenUI.Parent = CoreGui
+	GUI.screenUI.Parent = Players.LocalPlayer.PlayerGui --CHANGE BACK TO COREGUI WHEN NOT USING IN STUDIO
 	GUI.screenUI.ResetOnSpawn = false
     GUI.screenUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
 		
@@ -587,7 +587,7 @@ end)
 			function Section:Toggle(info)
 				UI:Validate({
 					Name = "Toggle",
-					callback = function() end,		
+					callback = function(v) end,		
 				},info or {})
 				local Toggle = {
 					Hover = false,
@@ -703,7 +703,7 @@ end)
 			
 			function Section:TextBox(info)
 				UI:Validate({
-					Name = "Text",
+					Text = "PlaceHolder",
 					callback = function(text) print(text) end,
 				},info or {})
 				
@@ -729,7 +729,7 @@ end)
 				TextBox.TextBox.BorderSizePixel = 0
 				TextBox.TextBox.Size = UDim2.new(1, 0, 1, 0)
 				TextBox.TextBox.Font = Enum.Font.SourceSans
-				TextBox.TextBox.PlaceholderText = "TextBox"
+				TextBox.TextBox.PlaceholderText = info.Text
 				TextBox.TextBox.Text = ""
 				TextBox.TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 				TextBox.TextBox.TextSize = 20.000
@@ -746,7 +746,7 @@ end)
 						return TextBox.TextBox.Text
 					end
 				end
-
+				
 				function TextBox:SetCallback(fn)
 					   info.callback = fn
 				end
@@ -770,6 +770,83 @@ end)
 				return TextBox
 			end
 			
+			function Section:ListBox(info)
+				UI:Validate({
+					Name = "List",
+				}, info or {})
+				
+				local Listbox = {}
+				
+				--render
+				do
+					Listbox.ScrollingList = Instance.new("ScrollingFrame")
+					Listbox.ScrollingList.Name = "ScrollingList"
+					Listbox.ScrollingList.Parent = Section.Section
+					Listbox.ScrollingList.Active = true
+					Listbox.ScrollingList.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					Listbox.ScrollingList.BackgroundTransparency = 1.000
+					Listbox.ScrollingList.BorderColor3 = Color3.fromRGB(0, 0, 0)
+					Listbox.ScrollingList.BorderSizePixel = 0
+					Listbox.ScrollingList.Size = UDim2.new(1, 0, 1, 0)
+					Listbox.ScrollingList.ScrollBarThickness = 0
+					Listbox.ScrollingList.CanvasSize = UDim2.new(0,0,10,0)
+					
+					Listbox.UIPadding = Instance.new("UIPadding")
+					Listbox.UIPadding.Parent = Listbox.ScrollingList
+					Listbox.UIPadding.PaddingTop = UDim.new(0,2)
+					Listbox.UIPadding.PaddingBottom = UDim.new(0,2)
+					Listbox.UIPadding.PaddingLeft = UDim.new(0,1)
+					Listbox.UIPadding.PaddingRight = UDim.new(0,1)
+					
+					Listbox.UIListLayout = Instance.new("UIListLayout")
+					Listbox.UIListLayout.Parent = Listbox.ScrollingList
+					Listbox.UIListLayout.Padding = UDim.new(0, 5)
+					
+				end
+				
+				
+				function Listbox:AddLabel(info)
+					UI:Validate({
+						Name = "Label",
+						Text = "Place Holder",
+					}, info or {})
+					
+					local Label = {}
+					
+					--render
+					do
+						Label.TextLabel = Instance.new("TextLabel")
+						Label.TextLabel.Parent = Listbox.ScrollingList
+						Label.TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+						Label.TextLabel.BackgroundTransparency = 1.000
+						Label.TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+						Label.TextLabel.BorderSizePixel = 0
+						Label.TextLabel.Size = UDim2.new(1,0, 0, 30)
+						Label.TextLabel.Font = Enum.Font.SourceSans
+						Label.TextLabel.Text = info.Text
+						Label.TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+						Label.TextLabel.TextSize = 20.000
+						
+						
+						
+						Label.UIStroke = Instance.new("UIStroke")
+						Label.UIStroke.Parent = Label.TextLabel
+						Label.UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+						Label.UIStroke.Color = Color3.fromRGB(86, 95, 104)
+						Label.UIStroke.Thickness = 1
+					end
+		
+					function Label:ChangeText(text)
+						  Label.TextLabel.Text = text
+					end
+					
+					return Label
+				end
+				
+				
+				return Listbox
+			end
+			
 			return Section
 		end
 	
@@ -779,6 +856,4 @@ end)
 	return GUI
 end
 
-
 return UI
-
