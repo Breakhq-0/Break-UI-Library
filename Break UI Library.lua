@@ -756,7 +756,7 @@ function UI:Create(Info)
 				function TextBox:SetCallback(fn)
 					info.callback = fn
 				end
-				
+
 				function TextBox:EnterPressed(text)
 					if text == nil then
 						return
@@ -768,11 +768,11 @@ function UI:Create(Info)
 				--method 
 				UserInputService.InputBegan:Connect(function(input, g)
 					if g then return end
-					if input.KeyCode == info.focus  then
+					if input.KeyCode == info.focus then
 						TextBox.TextBox:CaptureFocus()
 					end
 				end)
-				
+
 				TextBox.TextBox.FocusLost:Connect(function(enterpressed)
 					if enterpressed then
 						local text = TextBox:GetText()
