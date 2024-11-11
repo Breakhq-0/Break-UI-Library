@@ -709,7 +709,7 @@ function UI:Create(Info)
 			function Section:TextBox(info)
 				UI:Validate({
 					Text = "PlaceHolder",
-					focus = Enum.KeyCode.Semicolon,
+					focus = Enum.KeyCode.LeftAlt,
 					callback = function(text) print(text) end,
 				},info or {})
 
@@ -768,7 +768,7 @@ function UI:Create(Info)
 				--method 
 				UserInputService.InputBegan:Connect(function(input, g)
 					if g then return end
-					if input.KeyCode == info.focus and GUI.CurrentTab == TextBox.TextBoxFrame.Parent then
+					if input.KeyCode == info.focus and GUI.CurrentTab == Tab  then
 						TextBox.TextBox:CaptureFocus()
 					end
 				end)
