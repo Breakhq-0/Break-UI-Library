@@ -770,7 +770,6 @@ function UI:Create(Info)
 					if g then return end
 					if input.KeyCode == info.focus then
 						TextBox.TextBox:CaptureFocus()
-						TextBox.TextBox = ""
 					end
 				end)
 
