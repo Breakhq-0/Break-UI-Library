@@ -322,6 +322,7 @@ function UI:Create(Info)
 			function Section:Button(info)
 				UI:Validate({
 					Name = "Button",
+					icon = "",
 					callback = function() end,		
 				},info or {})
 
@@ -367,7 +368,7 @@ function UI:Create(Info)
 					Button.ImageLabel.BorderSizePixel = 0
 					Button.ImageLabel.Position = UDim2.new(1, 0, 0.5, 0)
 					Button.ImageLabel.Size = UDim2.new(0, 30, 1, -5)
-					Button.ImageLabel.Image = "rbxassetid://95599245136769"
+					Button.ImageLabel.Image = info.icon
 
 					Button.UIStroke = Instance.new("UIStroke")
 					Button.UIStroke.Parent = Button.ButtonFrame
