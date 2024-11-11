@@ -826,7 +826,7 @@ end)
 						Label.TextLabel.Text = info.Text
 						Label.TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 						Label.TextLabel.TextSize = 20.000
-						
+						Label.TextLabel.ClipsDescendants = true
 						
 						
 						Label.UIStroke = Instance.new("UIStroke")
