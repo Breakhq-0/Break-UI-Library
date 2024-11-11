@@ -768,7 +768,7 @@ function UI:Create(Info)
 				--method 
 				UserInputService.InputBegan:Connect(function(input, g)
 					if g then return end
-					if input.KeyCode == info.focus and GUI.CurrentTab == Tab  then
+					if input.KeyCode == info.focus  then
 						TextBox.TextBox:CaptureFocus()
 					end
 				end)
