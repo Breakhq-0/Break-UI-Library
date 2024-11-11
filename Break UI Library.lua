@@ -709,7 +709,7 @@ function UI:Create(Info)
 			function Section:TextBox(info)
 				UI:Validate({
 					Text = "PlaceHolder",
-					focus = Enum.KeyCode.LeftAlt,
+					focus = Enum.KeyCode.RightAlt,
 					callback = function(text) print(text) end,
 				},info or {})
 
@@ -770,6 +770,7 @@ function UI:Create(Info)
 					if g then return end
 					if input.KeyCode == info.focus then
 						TextBox.TextBox:CaptureFocus()
+						TextBox.TextBox = ""
 					end
 				end)
 
