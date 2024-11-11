@@ -626,11 +626,11 @@ function UI:Create(Info)
 				Toggle.ToggleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 				Toggle.ToggleLabel.TextSize = 20.000
 				Toggle.ToggleLabel.TextXAlignment = Enum.TextXAlignment.Left
-				
+
 				Toggle.UIPad = Instance.new("UIPadding")
 				Toggle.UIPad.Parent = Toggle.ToggleFrame
 				Toggle.UIPad.PaddingLeft = UDim.new(0,1)
-				
+
 				Toggle.ToggleColour = Instance.new("Frame")
 				Toggle.ToggleColour.Name = "ToggleButton"
 				Toggle.ToggleColour.Parent = Toggle.ToggleFrame
@@ -709,6 +709,7 @@ function UI:Create(Info)
 			function Section:TextBox(info)
 				UI:Validate({
 					Text = "PlaceHolder",
+					focus = Enum.KeyCode.Semicolon,
 					callback = function(text) print(text) end,
 				},info or {})
 
@@ -755,7 +756,7 @@ function UI:Create(Info)
 				function TextBox:SetCallback(fn)
 					info.callback = fn
 				end
-
+				
 				function TextBox:EnterPressed(text)
 					if text == nil then
 						return
@@ -765,6 +766,13 @@ function UI:Create(Info)
 				end
 
 				--method 
+				UserInputService.InputBegan:Connect(function(input, g)
+					if g then return end
+					if input.KeyCode == info.focus and GUI.CurrentTab == TextBox.TextBoxFrame.Parent then
+						TextBox.TextBox:CaptureFocus()
+					end
+				end)
+				
 				TextBox.TextBox.FocusLost:Connect(function(enterpressed)
 					if enterpressed then
 						local text = TextBox:GetText()
@@ -964,4 +972,3 @@ end
 
 
 return UI
-
