@@ -35,10 +35,12 @@ function UI:Create(Info)
 	Info = UI:Validate({
 		Name = "Untitled",
 		Key = Enum.KeyCode.RightShift,
+		Colour = Color3.fromRGB(255, 139, 7)
 	}, Info or {})
 
 	local GUI = {
-		CurrentTab = nil
+		CurrentTab = nil,
+		Colour = Info.Colour
 	}
 
 	--Render
@@ -126,7 +128,7 @@ function UI:Create(Info)
 
 		GUI.UIStroke = Instance.new("UIStroke")
 		GUI.UIStroke.Parent = GUI.MainFrame
-		GUI.UIStroke.Color = Color3.fromRGB(255, 139, 7)
+		GUI.UIStroke.Color = GUI.Colour
 		GUI.UIStroke.Thickness = 1
 		GUI.UIStroke.Transparency = 0.25
 		GUI.UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
@@ -247,7 +249,7 @@ function UI:Create(Info)
 					end
 
 					Tab.Active = true
-					UI:tween(Tab.Frame, {BackgroundColor3 = Color3.fromRGB(255, 139, 7)})
+					UI:tween(Tab.Frame, {BackgroundColor3 = GUI.Colour})
 					Tab.Container.Visible = true
 					GUI.CurrentTab = Tab
 				end
@@ -265,7 +267,7 @@ function UI:Create(Info)
 			Tab.Frame.MouseEnter:Connect(function()
 				Tab.Hover = true
 				if Tab.Active then
-					UI:tween(Tab.Frame, {BackgroundColor3 = Color3.fromRGB(255, 139, 7)})
+					UI:tween(Tab.Frame, {BackgroundColor3 = GUI.Colour})
 				end
 			end)
 
@@ -305,7 +307,7 @@ function UI:Create(Info)
 			Section.UIStroke = Instance.new("UIStroke")
 			Section.UIStroke.Parent = Section.Section
 			Section.UIStroke.Transparency = 0.25
-			Section.UIStroke.Color = Color3.fromRGB(255, 139, 7)
+			Section.UIStroke.Color = GUI.Colour
 
 			Section.UIListLayout_3 = Instance.new("UIListLayout")
 			Section.UIListLayout_3.Parent = Section.Section
@@ -511,7 +513,7 @@ function UI:Create(Info)
 					Slider.SliderMove = Instance.new("Frame")
 					Slider.SliderMove.Name = "SliderMove"
 					Slider.SliderMove.Parent = Slider.SliderBack
-					Slider.SliderMove.BackgroundColor3 = Color3.fromRGB(255, 139, 7)
+					Slider.SliderMove.BackgroundColor3 = GUI.Colour
 					Slider.SliderMove.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					Slider.SliderMove.BorderSizePixel = 0
 					Slider.SliderMove.Size = UDim2.new(0, 0, 1, 0)
@@ -658,7 +660,7 @@ function UI:Create(Info)
 					info.callback(Toggle.State)
 
 					if Toggle.State then
-						UI:tween(Toggle.ToggleColour, {BackgroundColor3 = Color3.fromRGB(255, 139, 7)})
+						UI:tween(Toggle.ToggleColour, {BackgroundColor3 = GUI.Colour})
 					else
 						UI:tween(Toggle.ToggleColour, {BackgroundColor3 = Color3.fromRGB(33, 33, 39)})
 					end
@@ -730,7 +732,7 @@ function UI:Create(Info)
 
 					TextBox.TextBox = Instance.new("TextBox")
 					TextBox.TextBox.Parent = TextBox.TextBoxFrame
-					TextBox.TextBox.BackgroundColor3 = Color3.fromRGB(255, 139, 7)
+					TextBox.TextBox.BackgroundColor3 = GUI.Colour
 					TextBox.TextBox.BackgroundTransparency = 1.000
 					TextBox.TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
 					TextBox.TextBox.BorderSizePixel = 0
