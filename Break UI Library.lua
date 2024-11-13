@@ -200,7 +200,7 @@ function UI:Create(Info)
 			Tab.Frame = Instance.new('Frame')
 			Tab.Frame.Parent = GUI.TabsHolder
 			Tab.Frame.Name = info.Name or "Tab"
-			Tab.Frame.Size = UDim2.new(0, 100, 1, 0)
+			Tab.Frame.Size = UDim2.new(0, 101, 1, 0)
 			Tab.Frame.BackgroundColor3 = Color3.fromRGB(66, 73, 79)
 			Tab.Frame.BorderSizePixel = 0
 			Tab.Button = Instance.new("TextLabel")
