@@ -130,7 +130,6 @@ function UI:Create(Info)
 		GUI.UIStroke.Parent = GUI.MainFrame
 		GUI.UIStroke.Color = GUI.Colour
 		GUI.UIStroke.Thickness = 1
-		GUI.UIStroke.Transparency = 0.25
 		GUI.UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
 		GUI.UIListLayout = Instance.new("UIListLayout")
