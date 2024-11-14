@@ -3,6 +3,7 @@ local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Break
 local Window = library:Create({
    Name = "Break UI Library" ,
    Key = Enum.KeyCode.RightShift --open/close key 
+   Colour = Color3.fromRGB(255, 139, 7)
 })
 
 local Tab = Window:CreateTab({
