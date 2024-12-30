@@ -520,13 +520,20 @@ function UI:Create(Info)
 				end
 
 				--method
+
+				 function roundToDecimal(number, decimalPlaces)
+                                 local multiplier = 10 ^ decimalPlaces
+                                 return math.round(number * multiplier) / multiplier
+                                end
+				
 				function Slider:SetValue(v)
 					if v == nil then
 						GUI.IsDragging = false
 						local percentage = math.clamp((mouse.X - Slider.SliderBack.AbsolutePosition.X)/(Slider.SliderBack.AbsoluteSize.X),0,1 )
 
 						local sliderValue = options.min + (options.max - options.min)*  percentage
-						Slider.ValueText.Text = tostring(sliderValue)
+						local decimal = roundToDecimal(sliderValue,1)
+						Slider.ValueText.Text = tostring(decimal)
 						Slider.SliderMove.Size = UDim2.fromScale(percentage, 1)
 					else
 						Slider.ValueText.Text =   tostring(v)
