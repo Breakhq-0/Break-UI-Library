@@ -531,7 +531,7 @@ function UI:Create(Info)
 						GUI.IsDragging = false
 						local percentage = math.clamp((mouse.X - Slider.SliderBack.AbsolutePosition.X)/(Slider.SliderBack.AbsoluteSize.X),0,1 )
 
-						local sliderValue = math.round(options.min + (options.max - options.min)*  percentage)
+						local sliderValue = math.floor(options.min + (options.max - options.min)*  percentage)
 						--local decimal = roundToDecimal(sliderValue,2)
 						Slider.ValueText.Text = tostring(sliderValue)
 						Slider.SliderMove.Size = UDim2.fromScale(percentage, 1)
